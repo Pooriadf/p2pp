@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+            color: #333;
+        }
+        .login-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            max-width: 380px;
+            width: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .login-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #00796b;
+            text-align: center;
+            font-weight: 500;
+        }
+        .section-header {
+            margin-bottom: 15px;
+            font-size: 22px;
+            color: #00796b;
+            border-bottom: 2px solid #00796b;
+            padding-bottom: 5px;
+            text-align: center;
+            font-weight: 500;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #00796b;
+            font-weight: 500;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid #b2dfdb;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background-color: #f1f8f6;
+        }
+        .form-group input:focus {
+            border-color: #00796b;
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+        }
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .login-btn:hover {
+            background-color: #004d40;
+            box-shadow: 0 5px 15px rgba(0, 77, 64, 0.2);
+        }
+        .login-container p {
+            text-align: center;
+            margin-top: 20px;
+            color: #00796b;
+        }
+        .login-container p a {
+            color: #004d40;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .login-container p a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        
+        <!-- Introduction Header -->
+        <div class="section-header">Welcome Back!</div>
+        <p>Please enter your email and password to access your account.</p>
+        
+        <!-- Login Form -->
+        <form action="/login" method="post">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+        
+        <!-- Additional Info Header -->
+        <div class="section-header">Don't Have an Account?</div>
+        <p>New here? <a href="signup.html">Sign Up</a> to create an account and start using our services.</p>
+    </div>
+</body>
+</html>

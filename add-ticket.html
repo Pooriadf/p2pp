@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Ticket</title>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            background: linear-gradient(135deg, #f9f9fa, #dddae0);
+            color: #333;
+        }
+        .logo img {
+            height: 40px;
+        }
+        .navigation ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            padding-left: 0;
+        }
+        .navigation a {
+            color: #333;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .navigation a:hover, .navigation .active {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .user-actions a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            background-color: #007bff;
+            transition: background-color 0.3s;
+            margin-left: 10px;
+        }
+        .user-actions a:hover {
+            background-color: #0056b3;
+        }
+        header {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .ticket-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            margin: 40px auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .ticket-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        .ticket-container h2 {
+            margin-bottom: 25px;
+            font-size: 28px;
+            color: #343a40;
+            text-align: center;
+        }
+        .ticket-container p {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff;
+            font-weight: 500;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #495057;
+            font-weight: 500;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+        }
+        .add-ticket-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .add-ticket-btn:hover {
+            background-color: #0056b3;
+            box-shadow: 0 5px 15px rgba(0, 91, 187, 0.2);
+        }
+        .select2-container--default .select2-selection--single {
+            height: 50px;
+            border-radius: 8px;
+        }
+        .select2-container .select2-selection--single .select2-selection__rendered {
+            padding-left: 18px;
+            padding-right: 18px;
+            padding-top: 12px;
+        }
+        .select2-container .select2-selection--single .select2-selection__arrow {
+            height: 50px;
+            right: 18px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="logo.png" alt="P2PP Logo"></a>
+        </div>
+        <nav class="navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="how-it-works.html">How It Works</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="user-actions">
+            <a href="login.html" class="login-btn">Log In</a>
+            <a href="signup.html" class="signup-btn">Sign Up</a>
+            <a href="add-ticket.html" class="add-ticket-btn">
+                <span class="plus-sign">+</span> Add Ticket
+            </a>
+        </div>
+    </header>
+
+    <div class="ticket-container">
+        <h2>Become a P2PP Traveler</h2>
+        <p>Save on travel costs by sharing your luggage.</p>
+        <form action="/add-ticket" method="post">
+            <div class="form-group">
+                <label for="origin">Origin</label>
+                <select id="origin" name="origin" required>
+                    <option value="">Select Origin</option>
+                    <option value="Tehran">Tehran</option>
+                    <option value="Paris">Paris</option>
+                    <option value="Marseille">Marseille</option>
+                    <option value="Lyon">Lyon</option>
+                    <!-- Add more options as needed -->
+                    <option value="Aix-en-Provence">Aix-en-Provence</option>
+                    <option value="Amiens">Amiens</option>
+                    <option value="Angers">Angers</option>
+                    <option value="Antibes">Antibes</option>
+                    <option value="Bastia">Bastia</option>
+                    <option value="Bordeaux">Bordeaux</option>
+                    <option value="Caen">Caen</option>
+                    <option value="Calais">Calais</option>
+                    <option value="Cannes">Cannes</option>
+                    <option value="Dijon">Dijon</option>
+                    <option value="Grenoble">Grenoble</option>
+                    <option value="Le Havre">Le Havre</option>
+                    <option value="Lille">Lille</option>
+                    <option value="Limoges">Limoges</option>
+                    <option value="Metz">Metz</option>
+                    <option value="Montpellier">Montpellier</option>
+                    <option value="Nancy">Nancy</option>
+                    <option value="Nantes">Nantes</option>
+                    <option value="Nice">Nice</option>
+                    <option value="Orleans">Orleans</option>
+                    <option value="Perpignan">Perpignan</option>
+                    <option value="Reims">Reims</option>
+                    <option value="Rennes">Rennes</option>
+                    <option value="Rouen">Rouen</option>
+                    <option value="Saint-Etienne">Saint-Etienne</option>
+                    <option value="Strasbourg">Strasbourg</option>
+                    <option value="Toulon">Toulon</option>
+                    <option value="Toulouse">Toulouse</option>
+                    <option value="Tours">Tours</option>
+                    <!-- Add more cities as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="destination">Destination</label>
+                <select id="destination" name="destination" required>
+                    <option value="">Select Destination</option>
+                    <option value="Tehran">Tehran</option>
+                    <option value="Paris">Paris</option>
+                    <option value="Marseille">Marseille</option>
+                    <option value="Lyon">Lyon</option>
+                    <!-- Add more options as needed -->
+                    <option value="Aix-en-Provence">Aix-en-Provence</option>
+                    <option value="Amiens">Amiens</option>
+                    <option value="Angers">Angers</option>
+                    <option value="Antibes">Antibes</option>
+                    <option value="Bastia">Bastia</option>
+                    <option value="Bordeaux">Bordeaux</option>
+                    <option value="Caen">Caen</option>
+                    <option value="Calais">Calais</option>
+                    <option value="Cannes">Cannes</option>
+                    <option value="Dijon">Dijon</option>
+                    <option value="Grenoble">Grenoble</option>
+                    <option value="Le Havre">Le Havre</option>
+                    <option value="Lille">Lille</option>
+                    <option value="Limoges">Limoges</option>
+                    <option value="Metz">Metz</option>
+                    <option value="Montpellier">Montpellier</option>
+                    <option value="Nancy">Nancy</option>
+                    <option value="Nantes">Nantes</option>
+                    <option value="Nice">Nice</option>
+                    <option value="Orleans">Orleans</option>
+                    <option value="Perpignan">Perpignan</option>
+                    <option value="Reims">Reims</option>
+                    <option value="Rennes">Rennes</option>
+                    <option value="Rouen">Rouen</option>
+                    <option value="Saint-Etienne">Saint-Etienne</option>
+                    <option value="Strasbourg">Strasbourg</option>
+                    <option value="Toulon">Toulon</option>
+                    <option value="Toulouse">Toulouse</option>
+                    <option value="Tours">Tours</option>
+                    <!-- Add more cities as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="flightDate">Flight Date</label>
+                <input type="date" id="flightDate" name="flightDate" required>
+            </div>
+            <div class="form-group">
+                <label for="extraDetails">Additional Details (optional)</label>
+                <input type="text" id="extraDetails" name="extraDetails" placeholder="Any extra information">
+            </div>
+            <button type="submit" class="add-ticket-btn">Add Ticket</button>
+        </form>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#origin, #destination').select2({
+                placeholder: "Select an option",
+                allowClear: true
+            });
+            
+            // Set the minimum date for the flightDate input to today's date
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById('flightDate').setAttribute('min', today);
+        });
+    </script>
+</body>
+</html>
